@@ -1,0 +1,250 @@
+#計算測站C0M530 ( 奮起湖站 )從2006年至 2015年的十年的每日平均氣溫、每日最低溫的平均、每日最高溫的平均、每月平均氣溫、平均每月累積降水
+#計算最暖月的每日最高溫平均  
+#計算最冷月的每日最低溫平均
+getwd()
+setwd("D:/sourcetree/ECODATA/聚合作業/raw")
+getwd()
+library(data.table)
+library(plyr)
+library(curl)
+## 資料輸入
+# 把自動氣象測站資料用 fread 餵進去，io 速度比較快
+# 先設定欄位名稱(names)和類別(classes)
+col_names = c('stno','yyyymmddhh','PS01','TX01','RH01','WD01','WD02','PP01','SS01')
+col_classes = c('character', 'integer', 'float', 'float', 'integer', 'float','integer', 'float','float')
+
+data1 = fread("200601_auto_hr.txt", skip=75, header=FALSE, colClasses=col_classes,na.strings = c('-9991','-9995','-9996','-9997','-9998','-9999'))
+setnames(data1, col_names)
+data200601 <- data1[c(64706:65449),]
+data2 = fread("200602_auto_hr.txt", skip=75, header=FALSE, colClasses=col_classes,na.strings = c('-9991','-9995','-9996','-9997','-9998','-9999'))
+setnames(data2, col_names)
+data200602 <- data2[c(58466:59137),]
+data3 = fread("200603_auto_hr.txt", skip=75, header=FALSE, colClasses=col_classes,na.strings = c('-9991','-9995','-9996','-9997','-9998','-9999'))
+setnames(data3, col_names)
+data200603 <- subset(data3,data3$stno %in% "C0M530")
+
+gointo = function(txt){
+  A = fread(txt, skip=75, header=FALSE, colClasses=col_classes,na.strings = c('-9991','-9995','-9996','-9997','-9998','-9999'))
+  setnames(A, col_names)
+  B <- subset(A,A$stno %in% "C0M530")
+}
+data200604 = gointo("200604_auto_hr.txt")
+
+list.files(,full.names = TRUE)
+rawdata200601<- gointo("200601_auto_hr.txt")
+rawdata200602<- gointo("200602_auto_hr.txt")
+rawdata200603<- gointo("200603_auto_hr.txt")
+rawdata200604<- gointo("200604_auto_hr.txt")
+rawdata200605<- gointo("200605_auto_hr.txt")
+rawdata200606<- gointo("200606_auto_hr.txt")
+rawdata200607<- gointo("200607_auto_hr.txt")
+rawdata200608<- gointo("200608_auto_hr.txt")
+rawdata200609<- gointo("200609_auto_hr.txt")
+rawdata200610<- gointo("200610_auto_hr.txt")
+rawdata200611<- gointo("200611_auto_hr.txt")
+rawdata200612<- gointo("200612_auto_hr.txt")
+rawdata200701<- gointo("200701_auto_hr.txt")
+rawdata200702<- gointo("200702_auto_hr.txt")
+rawdata200703<- gointo("200703_auto_hr.txt")
+rawdata200704<- gointo("200704_auto_hr.txt")
+rawdata200705<- gointo("200705_auto_hr.txt")
+rawdata200706<- gointo("200706_auto_hr.txt")
+rawdata200707<- gointo("200707_auto_hr.txt")
+rawdata200708<- gointo("200708_auto_hr.txt")
+rawdata200709<- gointo("200709_auto_hr.txt")
+rawdata200710<- gointo("200710_auto_hr.txt")
+rawdata200711<- gointo("200711_auto_hr.txt")
+rawdata200712<- gointo("200712_auto_hr.txt")
+rawdata200801<- gointo("200801_auto_hr.txt")
+rawdata200802<- gointo("200802_auto_hr.txt")
+rawdata200803<- gointo("200803_auto_hr.txt")
+rawdata200804<- gointo("200804_auto_hr.txt")
+rawdata200805<- gointo("200805_auto_hr.txt")
+rawdata200806<- gointo("200806_auto_hr.txt")
+rawdata200807<- gointo("200807_auto_hr.txt")
+rawdata200808<- gointo("200808_auto_hr.txt")
+rawdata200809<- gointo("200809_auto_hr.txt")
+rawdata200810<- gointo("200810_auto_hr.txt")
+rawdata200811<- gointo("200811_auto_hr.txt")
+rawdata200812<- gointo("200812_auto_hr.txt")
+rawdata200901<- gointo("200901_auto_hr.txt")
+rawdata200902<- gointo("200902_auto_hr.txt")
+rawdata200903<- gointo("200903_auto_hr.txt")
+rawdata200904<- gointo("200904_auto_hr.txt")
+rawdata200905<- gointo("200905_auto_hr.txt")
+rawdata200906<- gointo("200906_auto_hr.txt")
+rawdata200907<- gointo("200907_auto_hr.txt")
+rawdata200908<- gointo("200908_auto_hr.txt")
+rawdata200909<- gointo("200909_auto_hr.txt")
+rawdata200910<- gointo("200910_auto_hr.txt")
+rawdata200911<- gointo("200911_auto_hr.txt")
+rawdata200912<- gointo("200912_auto_hr.txt")
+rawdata201001<- gointo("201001_auto_hr.txt")
+rawdata201002<- gointo("201002_auto_hr.txt")
+rawdata201003<- gointo("201003_auto_hr.txt")
+rawdata201004<- gointo("201004_auto_hr.txt")
+rawdata201005<- gointo("201005_auto_hr.txt")
+rawdata201006<- gointo("201006_auto_hr.txt")
+rawdata201007<- gointo("201007_auto_hr.txt")
+rawdata201008<- gointo("201008_auto_hr.txt")
+rawdata201009<- gointo("201009_auto_hr.txt")
+rawdata201010<- gointo("201010_auto_hr.txt")
+rawdata201011<- gointo("201011_auto_hr.txt")
+rawdata201012<- gointo("201012_auto_hr.txt")
+rawdata201101<- gointo("201101_auto_hr.txt")
+rawdata201102<- gointo("201102_auto_hr.txt")
+rawdata201103<- gointo("201103_auto_hr.txt")
+rawdata201104<- gointo("201104_auto_hr.txt")
+rawdata201105<- gointo("201105_auto_hr.txt")
+rawdata201106<- gointo("201106_auto_hr.txt")
+rawdata201107<- gointo("201107_auto_hr.txt")
+rawdata201108<- gointo("201108_auto_hr.txt")
+rawdata201109<- gointo("201109_auto_hr.txt")
+rawdata201110<- gointo("201110_auto_hr.txt")
+rawdata201111<- gointo("201111_auto_hr.txt")
+rawdata201112<- gointo("201112_auto_hr.txt")
+rawdata201201<- gointo("201201_auto_hr.txt")
+rawdata201202<- gointo("201202_auto_hr.txt")
+rawdata201203<- gointo("201203_auto_hr.txt")
+rawdata201204<- gointo("201204_auto_hr.txt")
+rawdata201205<- gointo("201205_auto_hr.txt")
+rawdata201206<- gointo("201206_auto_hr.txt")
+rawdata201207<- gointo("201207_auto_hr.txt")
+rawdata201208<- gointo("201208_auto_hr.txt")
+rawdata201209<- gointo("201209_auto_hr.txt")
+rawdata201210<- gointo("201210_auto_hr.txt")
+rawdata201211<- gointo("201211_auto_hr.txt")
+rawdata201212<- gointo("201212_auto_hr.txt")
+rawdata201301<- gointo("201301_auto_hr.txt")
+rawdata201302<- gointo("201302_auto_hr.txt")
+rawdata201303<- gointo("201303_auto_hr.txt")
+rawdata201304<- gointo("201304_auto_hr.txt")
+rawdata201305<- gointo("201305_auto_hr.txt")
+rawdata201306<- gointo("201306_auto_hr.txt")
+rawdata201307<- gointo("201307_auto_hr.txt")
+rawdata201308<- gointo("201308_auto_hr.txt")
+rawdata201309<- gointo("201309_auto_hr.txt")
+rawdata201310<- gointo("201310_auto_hr.txt")
+rawdata201311<- gointo("201311_auto_hr.txt")
+rawdata201312<- gointo("201312_auto_hr.txt")
+rawdata201401<- gointo("201401_auto_hr.txt")
+rawdata201402<- gointo("201402_auto_hr.txt")
+rawdata201403<- gointo("201403_auto_hr.txt")
+rawdata201404<- gointo("201404_auto_hr.txt")
+rawdata201405<- gointo("201405_auto_hr.txt")
+rawdata201406<- gointo("201406_auto_hr.txt")
+rawdata201407<- gointo("201407_auto_hr.txt")
+rawdata201408<- gointo("201408_auto_hr.txt")
+rawdata201409<- gointo("201409_auto_hr.txt")
+rawdata201410<- gointo("201410_auto_hr.txt")
+rawdata201411<- gointo("201411_auto_hr.txt")
+rawdata201412<- gointo("201412_auto_hr.txt")
+rawdata201501<- gointo("201501_auto_hr.txt")
+rawdata201502<- gointo("201502_auto_hr.txt")
+rawdata201503<- gointo("201503_auto_hr.txt")
+rawdata201504<- gointo("201504_auto_hr.txt")
+rawdata201505<- gointo("201505_auto_hr.txt")
+rawdata201506<- gointo("201506_auto_hr.txt")
+rawdata201507<- gointo("201507_auto_hr.txt")
+rawdata201508<- gointo("201508_auto_hr.txt")
+rawdata201509<- gointo("201509_auto_hr.txt")
+rawdata201510<- gointo("201510_auto_hr.txt")
+rawdata201511<- gointo("201511_auto_hr.txt")
+rawdata201512<- gointo("201512_auto_hr.txt")
+alldata <- rbind(rawdata200601,rawdata200602,rawdata200603,rawdata200604,rawdata200605,rawdata200606,rawdata200607,rawdata200608,rawdata200609,rawdata200610,rawdata200611,rawdata200612,rawdata200701,rawdata200702,rawdata200703,rawdata200704,rawdata200705,rawdata200706,rawdata200707,rawdata200708,rawdata200709,rawdata200710,rawdata200711,rawdata200712,rawdata200801,rawdata200802,rawdata200803,rawdata200804,rawdata200805,rawdata200806,rawdata200807,rawdata200808,rawdata200809,rawdata200810,rawdata200811,rawdata200812,rawdata200901,rawdata200902,rawdata200903,rawdata200904,rawdata200905,rawdata200906,rawdata200907,rawdata200908,rawdata200909,rawdata200910,rawdata200911,rawdata200912,rawdata201001,rawdata201002,rawdata201003,rawdata201004,rawdata201005,rawdata201006,rawdata201007,rawdata201008,rawdata201009,rawdata201010,rawdata201011,rawdata201012,rawdata201101,rawdata201102,rawdata201103,rawdata201104,rawdata201105,rawdata201106,rawdata201107,rawdata201108,rawdata201109,rawdata201110,rawdata201111,rawdata201112,rawdata201201,rawdata201202,rawdata201203,rawdata201204,rawdata201205,rawdata201206,rawdata201207,rawdata201208,rawdata201209,rawdata201210,rawdata201211,rawdata201212,rawdata201301,rawdata201302,rawdata201303,rawdata201304,rawdata201305,rawdata201306,rawdata201307,rawdata201308,rawdata201309,rawdata201310,rawdata201311,rawdata201312,rawdata201401,rawdata201402,rawdata201403,rawdata201404,rawdata201405,rawdata201406,rawdata201407,rawdata201408,rawdata201409,rawdata201410,rawdata201411,rawdata201412,rawdata201501,rawdata201502,rawdata201503,rawdata201504,rawdata201505,rawdata201506,rawdata201507,rawdata201508,rawdata201509,rawdata201510,rawdata201511,rawdata201512
+)
+#多時間欄位....可不用做
+alldata[,timestamp:=as.POSIXct(strptime(alldata$yyyymmddhh, format='%Y%m%d%H'))]
+alldata[,date:=as.POSIXct(strptime(alldata$yyyymmddhh, format='%Y%m%d'))]
+
+
+#不知道為什麼要做
+#alldata2 <- alldata[hour(alldata$timestamp) >= 20  & hour(alldata$timestamp) <=23]
+
+#ctime <- as.POSIXct(strptime('alldata$timestamp', '%Y%m%d%H%M'))
+#mday(ctime)
+#yday(ctime)
+#week(ctime)
+
+## 處理氣象資料計算統計值
+# https://gist.github.com/mutolisp/4d0046a5423343988bab0a69b6c5747e
+# 使用 ddply 的前置作業
+# 統計時要排除 NA 值，所以另外寫 function 加上 fread 之後當成 character，要把它轉成 numeric
+# 以下的 function 用在 calc_monthly_stats() 中的 ddply()
+
+
+mean_omit_na = function(x){
+  x = as.numeric(x)
+  return(mean(x, na.rm=T))
+}
+sum_omit_na = function(x){
+  x = as.numeric(x)
+  return(sum(x, na.rm=T))
+}
+cmax = function(x) {
+  x = as.numeric(x)
+  return(max(x, na.rm=T))
+}
+cmin = function(x) {
+  x = as.numeric(x)
+  return(min(x, na.rm=T))
+}
+
+
+#計算測站C0M530 ( 奮起湖站 )從2006年至 2015年的十年的每日平均氣溫、每日最低溫的平均、每日最高溫的平均、每月平均氣溫、平均每月累積降水
+#計算最暖月的每日最高溫平均  
+#計算最冷月的每日最低溫平均
+
+## 資料分組(分為年及月及日)
+alldata [, year:= substr ((alldata$yyyymmddhh),1 ,4)]
+alldata [, month:= substr ((alldata$yyyymmddhh),1 ,6)]
+alldata [, day:= substr ((alldata$yyyymmddhh),1 ,8)]
+
+#求得十年的每日平均氣溫
+##方法1
+library(plyr)
+tx <- plyr::ddply(alldata, .(stno), summarize,tx = mean_omit_na(TX01))
+#tx <- aggregate ( alldata, .(day),FUN =  function(TX01){mean(alldata$TX01, na.rm=T)})不成功
+tx
+##方法2
+#mean(alldata$TX01,na.rm = T)不成功
+
+#### 取出每一天的最大與最小值
+##方法1
+#day_tem_min <- aggregate(x=ddd[c(TX01)],by = ddd[c(day)] ,FUN = function(ddd){  MEAN(cmin(ddd$TX01))}, na.rm = T)
+#day_tem_min <- aggregate(data.frame=(ddd$TX01),by= list(ddd$day),FUN = min, na.rm = T)
+##方法2
+day_tem_min <- aggregate(alldata$TX01 ~ (alldata$year+ alldata$month + alldata$day), alldata, min, na.rm = T)
+day_tem_min
+#可行
+setnames(day_tem_min,c('year','month','day','TX01'))
+edmminT <- mean_omit_na(day_tem_min[['TX01']])
+#求得十年的每日最低平均氣溫
+day_tem_max <- aggregate(alldata$TX01 ~ (alldata$year+ alldata$month + alldata$day), alldata, max, na.rm = T)
+edmmaxT <-mean_omit_na(day_tem_max[['alldata$TX01']])
+edmminT
+edmmaxT
+#求得十年的每日最低及最高平均氣溫了
+
+#十年的每月平均氣溫
+month_tem_mean <- aggregate(TX01 ~ (year + month), alldata,mean_omit_na )
+View(month_tem_mean)
+mtmean <- mean_omit_na(month_tem_mean[['TX01']])
+mtmean
+
+#十年的平均每月累積降水
+month_pp_sum <- aggregate(PP01 ~ month, alldata,sum_omit_na)
+View(month_pp_sum)
+mppsum <- mean_omit_na(month_pp_sum[['PP01']])
+mppsum
+#計算最暖月的每日最高溫平均  
+View(month_tem_mean)
+whichmonthwarm <- aggregate(TX01 ~ year, month_tem_mean,cmax)
+View(whichmonthwarm)#求出每年的最暖月但不知道是哪一月份
+
+#計算最冷月的每日最低溫平均
+View(month_tem_mean)
+whichmonthcold <- aggregate(TX01 ~ year, month_tem_mean,cmin)
+View(whichmonthcold)#求出每年的最冷月但不知道是哪一月份
+
+
